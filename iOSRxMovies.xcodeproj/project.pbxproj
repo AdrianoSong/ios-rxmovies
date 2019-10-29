@@ -9,19 +9,25 @@
 /* Begin PBXBuildFile section */
 		295B4B622367ABD80069C93E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B612367ABD80069C93E /* AppDelegate.swift */; };
 		295B4B642367ABD80069C93E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B632367ABD80069C93E /* ViewController.swift */; };
-		295B4B672367ABD80069C93E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 295B4B652367ABD80069C93E /* Main.storyboard */; };
 		295B4B692367ABD90069C93E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 295B4B682367ABD90069C93E /* Assets.xcassets */; };
 		295B4B6C2367ABD90069C93E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 295B4B6A2367ABD90069C93E /* LaunchScreen.storyboard */; };
+		295B4B742367ACD50069C93E /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 295B4B732367ACD50069C93E /* .swiftlint.yml */; };
+		295B4B7D2367B20B0069C93E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B7C2367B20B0069C93E /* Movie.swift */; };
+		295B4B802367B45D0069C93E /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B7F2367B45D0069C93E /* MovieListViewModel.swift */; };
+		295B4B822367B4790069C93E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B812367B4790069C93E /* MovieCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		295B4B5E2367ABD80069C93E /* iOSRxMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSRxMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		295B4B612367ABD80069C93E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		295B4B632367ABD80069C93E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		295B4B662367ABD80069C93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		295B4B682367ABD90069C93E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		295B4B6B2367ABD90069C93E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		295B4B6D2367ABD90069C93E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		295B4B732367ACD50069C93E /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		295B4B7C2367B20B0069C93E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		295B4B7F2367B45D0069C93E /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
+		295B4B812367B4790069C93E /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +44,7 @@
 		295B4B552367ABD80069C93E = {
 			isa = PBXGroup;
 			children = (
+				295B4B732367ACD50069C93E /* .swiftlint.yml */,
 				295B4B602367ABD80069C93E /* iOSRxMovies */,
 				295B4B5F2367ABD80069C93E /* Products */,
 			);
@@ -54,14 +61,64 @@
 		295B4B602367ABD80069C93E /* iOSRxMovies */ = {
 			isa = PBXGroup;
 			children = (
+				295B4B772367B1A80069C93E /* features */,
 				295B4B612367ABD80069C93E /* AppDelegate.swift */,
-				295B4B632367ABD80069C93E /* ViewController.swift */,
-				295B4B652367ABD80069C93E /* Main.storyboard */,
 				295B4B682367ABD90069C93E /* Assets.xcassets */,
 				295B4B6A2367ABD90069C93E /* LaunchScreen.storyboard */,
 				295B4B6D2367ABD90069C93E /* Info.plist */,
 			);
 			path = iOSRxMovies;
+			sourceTree = "<group>";
+		};
+		295B4B772367B1A80069C93E /* features */ = {
+			isa = PBXGroup;
+			children = (
+				295B4B782367B1B40069C93E /* movieList */,
+			);
+			path = features;
+			sourceTree = "<group>";
+		};
+		295B4B782367B1B40069C93E /* movieList */ = {
+			isa = PBXGroup;
+			children = (
+				295B4B7E2367B4490069C93E /* viewModel */,
+				295B4B7B2367B1D70069C93E /* view */,
+				295B4B7A2367B1D10069C93E /* model */,
+				295B4B792367B1C90069C93E /* controller */,
+			);
+			path = movieList;
+			sourceTree = "<group>";
+		};
+		295B4B792367B1C90069C93E /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				295B4B632367ABD80069C93E /* ViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		295B4B7A2367B1D10069C93E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				295B4B7C2367B20B0069C93E /* Movie.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		295B4B7B2367B1D70069C93E /* view */ = {
+			isa = PBXGroup;
+			children = (
+				295B4B812367B4790069C93E /* MovieCell.swift */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		295B4B7E2367B4490069C93E /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				295B4B7F2367B45D0069C93E /* MovieListViewModel.swift */,
+			);
+			path = viewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +131,8 @@
 				295B4B5A2367ABD80069C93E /* Sources */,
 				295B4B5B2367ABD80069C93E /* Frameworks */,
 				295B4B5C2367ABD80069C93E /* Resources */,
+				295B4B752367AD5B0069C93E /* Run Script (Swiftlint) */,
+				295B4B762367AE660069C93E /* Run Script (Carthage) */,
 			);
 			buildRules = (
 			);
@@ -122,13 +181,62 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				295B4B742367ACD50069C93E /* .swiftlint.yml in Resources */,
 				295B4B6C2367ABD90069C93E /* LaunchScreen.storyboard in Resources */,
 				295B4B692367ABD90069C93E /* Assets.xcassets in Resources */,
-				295B4B672367ABD80069C93E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		295B4B752367AD5B0069C93E /* Run Script (Swiftlint) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script (Swiftlint)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		295B4B762367AE660069C93E /* Run Script (Carthage) */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/RxAtomic.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/AlamofireImage.framework",
+			);
+			name = "Run Script (Carthage)";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxAtomic.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Alamofireframework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/AlamofireImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		295B4B5A2367ABD80069C93E /* Sources */ = {
@@ -137,20 +245,15 @@
 			files = (
 				295B4B642367ABD80069C93E /* ViewController.swift in Sources */,
 				295B4B622367ABD80069C93E /* AppDelegate.swift in Sources */,
+				295B4B7D2367B20B0069C93E /* Movie.swift in Sources */,
+				295B4B822367B4790069C93E /* MovieCell.swift in Sources */,
+				295B4B802367B45D0069C93E /* MovieListViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		295B4B652367ABD80069C93E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				295B4B662367ABD80069C93E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		295B4B6A2367ABD90069C93E /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -283,6 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 736S8K8L22;
 				INFOPLIST_FILE = iOSRxMovies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -300,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 736S8K8L22;
 				INFOPLIST_FILE = iOSRxMovies/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -10,19 +10,28 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    var viewModel: MovieListViewModel?
+    
     let tableView: UITableView = {
        
         let view = UITableView()
-        view.backgroundColor = .red
-        
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
+    var myMoviesArray: Movie = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         layout()
+        
+        viewModel = MovieListViewModel(delegate: self)
+        
+        let movieElement = MovieElement(title: "Default cell example")
+        
+        myMoviesArray.append(movieElement)
     }
     
     fileprivate func layout() {
@@ -33,7 +42,7 @@ class ViewController: UIViewController {
     
     fileprivate func controllerStyle() {
         
-        title = "Main VC"
+        title = "Movies RX"
         view.backgroundColor = .white
     }
     
@@ -41,6 +50,8 @@ class ViewController: UIViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        tableView.register(MovieCell.self, forCellReuseIdentifier: MovieCell.Constants.cellIdentifier)
         
         view.addSubview(tableView)
         
@@ -57,11 +68,37 @@ class ViewController: UIViewController {
 // MARK: - tableview functions
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return myMoviesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier:
+            MovieCell.Constants.cellIdentifier, for:
+            indexPath) as? MovieCell else {
+                return UITableViewCell()
+        }
+        
+        cell.movieTextTitle = myMoviesArray[indexPath.row].title
+        
+        viewModel?.getPosterImage(
+            posterStringUrl: myMoviesArray[indexPath.row].coverUrl, completion: { (image) in
+                cell.moviePoster = image
+        })
+        return cell
+    }
+}
+
+// MARK: - Movie delegate
+extension ViewController: MovieListViewModelDelegate {
+    func fetchedMovies(movies: Movie) {
+        
+        myMoviesArray = movies
+        tableView.reloadData()
     }
 }

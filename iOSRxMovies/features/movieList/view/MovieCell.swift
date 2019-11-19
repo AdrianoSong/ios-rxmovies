@@ -29,7 +29,7 @@ class MovieCell: UITableViewCell {
     fileprivate let movieImage: UIImageView = {
         
         let view = UIImageView()
-        view.image = UIImage(named: "question_mark")?.resizeImage(targetSize: CGSize(width: 100, height: 100))
+        view.image = UIImage(named: "question_mark")?.af_imageScaled(to: CGSize(width: 100, height: 100))
         view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
         
@@ -90,7 +90,7 @@ class MovieCell: UITableViewCell {
         
         addSubview(container)
         
-        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        container.topAnchor.constraint(equalTo: topAnchor, constant: 10).isActive = true
         container.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         container.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -98,15 +98,21 @@ class MovieCell: UITableViewCell {
     }
     
     fileprivate func requestPosterCachedImage(_ newMoviewPosterURL: URLRequest) {
-        movieImage.af_setImage(withURLRequest: newMoviewPosterURL, completion: { [weak self] result in
+        movieImage.af_setImage(withURLRequest: newMoviewPosterURL,
+                               imageTransition: .crossDissolve(0.3),
+                               completion: { [weak self] result in
             
             guard let resultImage = result.value else {
                 self?.movieImage.image =
-                    UIImage(named: "question_mark")?.resizeImage(targetSize: CGSize(width: 100, height: 100))
+                    UIImage(named: "question_mark")?
+                        .af_imageScaled(to: CGSize(width: 100, height: 100))
+                        .af_imageRounded(withCornerRadius: 20.0)
                 return
             }
             
-            self?.movieImage.image = resultImage.resizeImage(targetSize: CGSize(width: 100, height: 150))
+            self?.movieImage.image = resultImage
+                .af_imageScaled(to: CGSize(width: 100, height: 150))
+                .af_imageRounded(withCornerRadius: 20.0)
         })
     }
 }

@@ -27,17 +27,22 @@ class ViewController: UIViewController {
         
         layout()
         
-        viewModel = MovieListViewModel(delegate: self)
-        
-        let movieElement = MovieElement(title: "Default cell example")
-        
-        myMoviesArray.append(movieElement)
+        setupViewModel()
     }
     
     fileprivate func layout() {
         
         controllerStyle()
+        
         setupTableView()
+    }
+    
+    fileprivate func setupViewModel() {
+        viewModel = MovieListViewModel(delegate: self)
+        
+        let movieElement = MovieElement(title: "Default cell example")
+        
+        myMoviesArray.append(movieElement)
     }
     
     fileprivate func controllerStyle() {
@@ -85,11 +90,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         }
         
         cell.movieTextTitle = myMoviesArray[indexPath.row].title
-        
-        viewModel?.getPosterImage(
-            posterStringUrl: myMoviesArray[indexPath.row].coverUrl, completion: { (image) in
-                cell.moviePoster = image
-        })
+        cell.moviePosterUrl = myMoviesArray[indexPath.row].coverUrl
+
         return cell
     }
 }

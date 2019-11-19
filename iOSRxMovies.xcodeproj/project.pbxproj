@@ -23,6 +23,7 @@
 		2999F6482370EEDE0093DE9F /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2999F6442370EEDE0093DE9F /* RxCocoa.framework */; };
 		2999F64D2370F99D0093DE9F /* MovieApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999F64C2370F99D0093DE9F /* MovieApi.swift */; };
 		2999F6512370FA3D0093DE9F /* BaseApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999F6502370FA3D0093DE9F /* BaseApi.swift */; };
+		29E463E223847A9300F1EC5B /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E463E123847A9300F1EC5B /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		2999F6442370EEDE0093DE9F /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		2999F64C2370F99D0093DE9F /* MovieApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApi.swift; sourceTree = "<group>"; };
 		2999F6502370FA3D0093DE9F /* BaseApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseApi.swift; sourceTree = "<group>"; };
+		29E463E123847A9300F1EC5B /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 		2999F63A2370EBCD0093DE9F /* shared */ = {
 			isa = PBXGroup;
 			children = (
+				29E463E023847A7C00F1EC5B /* extensions */,
 				2999F63D2370EE510093DE9F /* api */,
 				2999F63B2370EBE00093DE9F /* AppConstants.swift */,
 			);
@@ -171,6 +174,14 @@
 				2999F6432370EEDE0093DE9F /* RxSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		29E463E023847A7C00F1EC5B /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				29E463E123847A9300F1EC5B /* UIImage+Extension.swift */,
+			);
+			path = extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -302,6 +313,7 @@
 				295B4B622367ABD80069C93E /* AppDelegate.swift in Sources */,
 				295B4B7D2367B20B0069C93E /* Movie.swift in Sources */,
 				295B4B822367B4790069C93E /* MovieCell.swift in Sources */,
+				29E463E223847A9300F1EC5B /* UIImage+Extension.swift in Sources */,
 				295B4B802367B45D0069C93E /* MovieListViewModel.swift in Sources */,
 				2999F6512370FA3D0093DE9F /* BaseApi.swift in Sources */,
 			);

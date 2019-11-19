@@ -20,7 +20,7 @@ enum ApiRouter: URLRequestConvertible {
         switch self {
         case .getMovies:
             //A dict of the key (From the constants file) and its value is returned
-            return nil//["" : ""]
+            return nil//["testParam" : "testParamValue"]
         }
     }
     

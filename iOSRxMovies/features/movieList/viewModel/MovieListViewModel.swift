@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 import RxSwift
 import Alamofire
-import AlamofireImage
 
 protocol MovieListViewModelDelegate: class {
     func fetchedMovies(movies: Movie)
@@ -39,20 +38,5 @@ class MovieListViewModel {
             }, onCompleted: {
                 print("onComplete moviesResult")
             }).disposed(by: disposebag)
-    }
-    
-    func getPosterImage(posterStringUrl: String?, completion: @escaping (Image) -> Void) {
-        
-        guard let stringUrl = posterStringUrl else {
-            return
-        }
-        
-        Alamofire.request(stringUrl).responseImage { (respondeImage) in
-            guard let image = respondeImage.value else {
-                return
-            }
-            
-            completion(image)
-        }
     }
 }

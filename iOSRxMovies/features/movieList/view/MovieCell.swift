@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class MovieCell: UITableViewCell {
     
@@ -14,19 +15,37 @@ class MovieCell: UITableViewCell {
         static let cellIdentifier: String = "MovieCell"
     }
     
+    fileprivate let container: UIStackView = {
+       
+        let stackView = UIStackView()
+        stackView.distribution = .fillProportionally
+        stackView.axis = .horizontal
+        stackView.spacing = 8
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return stackView
+    }()
+    
     fileprivate let movieImage: UIImageView = {
         
         let view = UIImageView()
-        view.image = UIImage(named: "question_mark")
-        view.contentMode = .scaleAspectFit
+        view.image = UIImage(named: "question_mark")?.resizeImage(targetSize: CGSize(width: 100, height: 100))
+        view.contentMode = .scaleToFill
         view.translatesAutoresizingMaskIntoConstraints = false
         
        return view
     }()
     
-    var moviePoster: UIImage? {
+    var moviePosterUrl: String? {
         didSet {
-            movieImage.image = moviePoster
+            guard let newMoviePosterString = moviePosterUrl,
+                let posterURL = URL(string: newMoviePosterString) else {
+                    return
+            }
+            
+            let newMoviewPosterURL = URLRequest(url: posterURL)
+            
+            requestPosterCachedImage(newMoviewPosterURL)
         }
     }
     
@@ -53,8 +72,7 @@ class MovieCell: UITableViewCell {
         
         backgroundColor = .clear
         
-        setupMovieImage()
-        setupMovieTitle()
+        setupContainerStack()
     }
     
     override func awakeFromNib() {
@@ -65,22 +83,30 @@ class MovieCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    fileprivate func setupMovieImage() {
+    fileprivate func setupContainerStack() {
         
-        addSubview(movieImage)
+        container.addArrangedSubview(movieImage)
+        container.addArrangedSubview(movieTitle)
         
-        movieImage.topAnchor.constraint(equalTo: topAnchor, constant: 16).isActive = true
-        movieImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16).isActive = true
-        movieImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16).isActive = true
-        movieImage.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        addSubview(container)
+        
+        container.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        container.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        container.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
     }
     
-    fileprivate func setupMovieTitle() {
-        
-        addSubview(movieTitle)
-        
-        movieTitle.topAnchor.constraint(equalTo: topAnchor, constant: 40).isActive = true
-        movieTitle.leadingAnchor.constraint(equalTo: movieImage.trailingAnchor).isActive = true
-        movieTitle.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16).isActive = true
+    fileprivate func requestPosterCachedImage(_ newMoviewPosterURL: URLRequest) {
+        movieImage.af_setImage(withURLRequest: newMoviewPosterURL, completion: { [weak self] result in
+            
+            guard let resultImage = result.value else {
+                self?.movieImage.image =
+                    UIImage(named: "question_mark")?.resizeImage(targetSize: CGSize(width: 100, height: 100))
+                return
+            }
+            
+            self?.movieImage.image = resultImage.resizeImage(targetSize: CGSize(width: 100, height: 150))
+        })
     }
 }

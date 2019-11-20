@@ -17,13 +17,13 @@ class MovieCell: UITableViewCell {
     
     fileprivate let container: UIStackView = {
        
-        let stackView = UIStackView()
-        stackView.distribution = .fillProportionally
-        stackView.axis = .horizontal
-        stackView.spacing = 8
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        let view = UIStackView()
+        view.distribution = .fillProportionally
+        view.axis = .horizontal
+        view.spacing = 8
+        view.translatesAutoresizingMaskIntoConstraints = false
         
-        return stackView
+        return view
     }()
     
     fileprivate let movieImage: UIImageView = {
@@ -71,6 +71,7 @@ class MovieCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .clear
+        selectionStyle = .none
         
         setupContainerStack()
     }
@@ -94,12 +95,11 @@ class MovieCell: UITableViewCell {
         container.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         container.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        
     }
     
     fileprivate func requestPosterCachedImage(_ newMoviewPosterURL: URLRequest) {
         movieImage.af_setImage(withURLRequest: newMoviewPosterURL,
-                               imageTransition: .crossDissolve(0.3),
+                               imageTransition: .crossDissolve(0.4),
                                completion: { [weak self] result in
             
             guard let resultImage = result.value else {

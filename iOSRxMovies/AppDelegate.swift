@@ -53,6 +53,7 @@ extension AppDelegate {
         let viewController = ViewController()
         
         let navigation = UINavigationController(rootViewController: viewController)
+        navigation.navigationBar.prefersLargeTitles = true
         
         window?.rootViewController = navigation
     }

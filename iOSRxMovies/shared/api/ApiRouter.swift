@@ -14,9 +14,12 @@ import Alamofire
 
 enum ApiRouter: URLRequestConvertible {
     
+    // MARK: - Endpoints
+    case getMovies
+    
     // MARK: - Parameters
     //This is the queries part, it's optional because an endpoint can be without parameters
-    private var parameters: Parameters? {
+    fileprivate var parameters: Parameters? {
         switch self {
         case .getMovies:
             //A dict of the key (From the constants file) and its value is returned
@@ -26,22 +29,19 @@ enum ApiRouter: URLRequestConvertible {
     
     // MARK: - HttpMethod
     //This returns the HttpMethod type. It's used to determine the type if several endpoints are peresent
-    private var method: HTTPMethod {
+    fileprivate var method: HTTPMethod {
         switch self {
         case .getMovies:
             return .get
         }
     }
     
-    private var path: String {
+    fileprivate var path: String {
         switch self {
         case .getMovies:
             return "movies"
         }
     }
-    
-    // MARK: - Endpoints
-    case getMovies
     
     // swiftlint:disable force_unwrapping
     func asURLRequest() throws -> URLRequest {

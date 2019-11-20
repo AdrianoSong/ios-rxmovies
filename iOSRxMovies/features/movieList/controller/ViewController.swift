@@ -95,6 +95,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let movieDetailsVM = MovieDetailsViewModel(movie: myMoviesArray[indexPath.row])
+        let moviewDetailsVC = MovieDetailsViewController(viewModel: movieDetailsVM)
+        
+        navigationController?.pushViewController(moviewDetailsVC, animated: true)
+    }
 }
 
 // MARK: - Movie delegate

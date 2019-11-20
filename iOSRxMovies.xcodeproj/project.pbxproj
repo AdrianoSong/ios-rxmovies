@@ -15,6 +15,8 @@
 		295B4B7D2367B20B0069C93E /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B7C2367B20B0069C93E /* Movie.swift */; };
 		295B4B802367B45D0069C93E /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B7F2367B45D0069C93E /* MovieListViewModel.swift */; };
 		295B4B822367B4790069C93E /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295B4B812367B4790069C93E /* MovieCell.swift */; };
+		2970C52323857A1D00121D16 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970C52223857A1D00121D16 /* MovieDetailsViewController.swift */; };
+		2970C526238581BF00121D16 /* MovieDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2970C525238581BF00121D16 /* MovieDetailsViewModel.swift */; };
 		2999F63C2370EBE00093DE9F /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999F63B2370EBE00093DE9F /* AppConstants.swift */; };
 		2999F63F2370EE610093DE9F /* ApiRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2999F63E2370EE610093DE9F /* ApiRouter.swift */; };
 		2999F6452370EEDE0093DE9F /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2999F6412370EEDE0093DE9F /* Alamofire.framework */; };
@@ -36,6 +38,8 @@
 		295B4B7C2367B20B0069C93E /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		295B4B7F2367B45D0069C93E /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		295B4B812367B4790069C93E /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		2970C52223857A1D00121D16 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
+		2970C525238581BF00121D16 /* MovieDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewModel.swift; sourceTree = "<group>"; };
 		2999F63B2370EBE00093DE9F /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		2999F63E2370EE610093DE9F /* ApiRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiRouter.swift; sourceTree = "<group>"; };
 		2999F6412370EEDE0093DE9F /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -95,6 +99,7 @@
 		295B4B772367B1A80069C93E /* features */ = {
 			isa = PBXGroup;
 			children = (
+				2970C520238579F300121D16 /* movieDetails */,
 				295B4B782367B1B40069C93E /* movieList */,
 			);
 			path = features;
@@ -139,6 +144,31 @@
 			isa = PBXGroup;
 			children = (
 				295B4B7F2367B45D0069C93E /* MovieListViewModel.swift */,
+			);
+			path = viewModel;
+			sourceTree = "<group>";
+		};
+		2970C520238579F300121D16 /* movieDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2970C524238581AC00121D16 /* viewModel */,
+				2970C52123857A0C00121D16 /* controller */,
+			);
+			path = movieDetails;
+			sourceTree = "<group>";
+		};
+		2970C52123857A0C00121D16 /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				2970C52223857A1D00121D16 /* MovieDetailsViewController.swift */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		2970C524238581AC00121D16 /* viewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2970C525238581BF00121D16 /* MovieDetailsViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -295,10 +325,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2970C52323857A1D00121D16 /* MovieDetailsViewController.swift in Sources */,
 				2999F63F2370EE610093DE9F /* ApiRouter.swift in Sources */,
 				295B4B642367ABD80069C93E /* ViewController.swift in Sources */,
 				2999F63C2370EBE00093DE9F /* AppConstants.swift in Sources */,
 				2999F64D2370F99D0093DE9F /* MovieApi.swift in Sources */,
+				2970C526238581BF00121D16 /* MovieDetailsViewModel.swift in Sources */,
 				295B4B622367ABD80069C93E /* AppDelegate.swift in Sources */,
 				295B4B7D2367B20B0069C93E /* Movie.swift in Sources */,
 				295B4B822367B4790069C93E /* MovieCell.swift in Sources */,

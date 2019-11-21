@@ -18,16 +18,18 @@ class MovieDetailsViewController: UIViewController {
         let view = UILabel()
         view.font = UIFont.systemFont(ofSize: 18)
         view.textColor = .black
+        view.textAlignment = .center
+        view.sizeToFit()
         view.numberOfLines = 0
         view.text = "Sample title"
         
         return view
     }()
     
-    fileprivate var view2: UIView = {
+    fileprivate var posterImage: UIImageView = {
         
-        let view = UIView()
-        view.backgroundColor = .blue
+        let view = UIImageView()
+        view.contentMode = .scaleToFill
         
         return view
     }()
@@ -49,8 +51,9 @@ class MovieDetailsViewController: UIViewController {
     }
     
     init(viewModel: MovieDetailsViewModel?) {
-        self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        
+        self.viewModel = viewModel
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -60,22 +63,35 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = viewModel?.getMovieTitle()
+        layout()
+        
         view.backgroundColor = .white
         
         setupContainer()
     }
     
+    fileprivate func layout() {
+        
+        title = viewModel?.getMovieTitle()
+        
+        overview.text = viewModel?.getMovieOverview()
+        
+        viewModel?.setImagePoster(imageContainer: posterImage)
+    }
+    
     fileprivate func setupContainer() {
         
+        container.addArrangedSubview(posterImage)
         container.addArrangedSubview(overview)
-        container.addArrangedSubview(view2)
         
         view.addSubview(container)
         
-        container.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-        container.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        container.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        container.topAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 8).isActive = true
+        container.leadingAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16).isActive = true
+        container.trailingAnchor.constraint(
+            equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16).isActive = true
         container.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class MovieDetailsViewModel {
     
@@ -18,5 +19,25 @@ class MovieDetailsViewModel {
     
     func getMovieTitle() -> String {
         return movie?.title ?? ""
+    }
+    
+    func getMovieOverview() -> String {
+        return movie?.overview ?? "Fail to fecth movie overview"
+    }
+    
+    func setImagePoster(imageContainer: UIImageView) {
+        guard let newMoviePosterString = movie?.coverUrl,
+            let posterURL = URL(string: newMoviePosterString) else {
+                return
+        }
+        
+        let newMoviewPosterURL = URLRequest(url: posterURL)
+        
+        let width = UIScreen.main.bounds.width / 2
+        
+        MovieApi.requestPosterCachedImage(
+            newMoviewPosterURL: newMoviewPosterURL,
+            imageCotainer: imageContainer,
+            size: CGSize(width: width, height: 200))
     }
 }

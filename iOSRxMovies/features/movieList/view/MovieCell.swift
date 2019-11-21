@@ -45,7 +45,8 @@ class MovieCell: UITableViewCell {
             
             let newMoviewPosterURL = URLRequest(url: posterURL)
             
-            requestPosterCachedImage(newMoviewPosterURL)
+            MovieApi.requestPosterCachedImage(
+                newMoviewPosterURL: newMoviewPosterURL, imageCotainer: movieImage)
         }
     }
     
@@ -95,24 +96,5 @@ class MovieCell: UITableViewCell {
         container.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         container.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         container.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-    }
-    
-    fileprivate func requestPosterCachedImage(_ newMoviewPosterURL: URLRequest) {
-        movieImage.af_setImage(withURLRequest: newMoviewPosterURL,
-                               imageTransition: .crossDissolve(0.4),
-                               completion: { [weak self] result in
-            
-            guard let resultImage = result.value else {
-                self?.movieImage.image =
-                    UIImage(named: "question_mark")?
-                        .af_imageScaled(to: CGSize(width: 100, height: 100))
-                        .af_imageRounded(withCornerRadius: 20.0)
-                return
-            }
-            
-            self?.movieImage.image = resultImage
-                .af_imageScaled(to: CGSize(width: 100, height: 150))
-                .af_imageRounded(withCornerRadius: 20.0)
-        })
     }
 }
